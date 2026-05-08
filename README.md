@@ -8,6 +8,9 @@ Unity 기반 AR 샘플 프로젝트입니다.
 - **Vuforia Engine 11.4.4** — 본 저장소의 `Packages/com.ptc.vuforia.engine-11.4.4.tgz`로 포함되어 있으며, Unity Package Manager가 자동 인식합니다. ([Vuforia Developer Portal](https://developer.vuforia.com/))
 - **OpenCVForUnity** (유료 에셋) — **본 저장소에 포함되지 않습니다.**
 - **UISystemPackage** — `manifest.json`에서 git URL로 참조 (자동 설치)
+- **UniTask** — `manifest.json`에서 git URL로 참조 (자동 설치)
+- **LitMotion** — `manifest.json`에서 git URL로 참조 (자동 설치)
+- **LitMotion.Animation** — `manifest.json`에서 git URL로 참조 (자동 설치)
 
 ## Setup
 
@@ -31,7 +34,7 @@ cd Sample_AR
 3. `Window → Package Manager → My Assets`에서 OpenCVForUnity import
 4. import 경로가 `Assets/OpenCVForUnity/`인지 확인
 
-OpenCVForUnity가 import되지 않은 상태에서는 `Assets/Scripts/ColorMapping/` 등 OpenCV 의존 코드의 컴파일 에러가 발생합니다.
+OpenCVForUnity가 import되지 않은 상태에서는 `Assets/Scripts/AR/ColorMapping/AirarManager.cs` OpenCV 의존 코드의 컴파일 에러가 발생합니다.
 
 ### 3. Unity Editor에서 프로젝트 열기
 
