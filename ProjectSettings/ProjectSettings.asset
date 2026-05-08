@@ -826,7 +826,13 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: OPENCV_DONT_USE_UNSAFE_CODE
+    Standalone: OPENCV_DONT_USE_UNSAFE_CODE
+    VisionOS: OPENCV_DONT_USE_UNSAFE_CODE
+    WebGL: OPENCV_DONT_USE_UNSAFE_CODE
+    Windows Store Apps: OPENCV_DONT_USE_UNSAFE_CODE
+    iPhone: OPENCV_DONT_USE_UNSAFE_CODE
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

@@ -26,4 +26,13 @@ public class My_UIManager : UIManager
         base.OnDestroyUI();
     }
 
+    protected override void OnBeginLoading()
+    {
+        Popup<LoadingPopup>(true).Open();
+    }
+
+    protected override void OnEndLoading()
+    {
+        Popup<LoadingPopup>().Close();
+    }
 }
