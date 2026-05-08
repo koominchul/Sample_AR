@@ -9,6 +9,16 @@
       },
       "hash": "5d830aba41a29ca5a5994d2e7389cec176590f92"
     },
+    "com.ptc.vuforia.engine": {
+      "version": "file:com.ptc.vuforia.engine",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0",
+        "com.unity.inputsystem": "1.11.2",
+        "com.unity.nuget.newtonsoft-json": "3.2.1"
+      }
+    },
     "com.unity.addressables": {
       "version": "2.9.1",
       "depth": 1,
@@ -115,6 +125,13 @@
     "com.unity.nuget.mono-cecil": {
       "version": "1.11.6",
       "depth": 3,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.2.2",
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"

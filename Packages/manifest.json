@@ -1,5 +1,6 @@
 {
-  "dependencies": {
+    "dependencies": {
+    "com.ptc.vuforia.engine": "file:com.ptc.vuforia.engine-11.4.4.tgz",
     "com.luck9kr.uisystem": "https://github.com/koominchul/UISystemPackage.git?path=/Packages/com.luck9kr.uisystem",
     "com.unity.ai.navigation": "2.0.12",
     "com.unity.collab-proxy": "2.12.4",
