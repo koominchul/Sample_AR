@@ -2,6 +2,7 @@
   "dependencies": {
     "com.annulusgames.lit-motion": "https://github.com/annulusgames/LitMotion.git?path=src/LitMotion/Assets/LitMotion",
     "com.annulusgames.lit-motion.animation": "https://github.com/annulusgames/LitMotion.git?path=src/LitMotion/Assets/LitMotion.Animation",
+    "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
     "com.luck9kr.uisystem": "https://github.com/koominchul/UISystemPackage.git?path=/Packages/com.luck9kr.uisystem",
     "com.ptc.vuforia.engine": "file:com.ptc.vuforia.engine-11.4.4.tgz",
     "com.unity.2d.sprite": "1.0.0",
