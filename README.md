@@ -18,7 +18,6 @@ Unity 기반 AR 샘플 프로젝트입니다.
 
 ```bash
 git clone https://github.com/koominchul/Sample_AR.git
-cd Sample_AR
 ```
 
 ### 2. OpenCVForUnity 별도 import (필수)
