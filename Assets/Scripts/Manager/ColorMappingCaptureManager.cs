@@ -13,19 +13,17 @@ public class ColorMappingCaptureManager : SingletonMonoBehaviour<ColorMappingCap
     DefaultObserverEventHandler[] defaultObserverEventHandlers;
     Dictionary<string, bool> trackedStates = new Dictionary<string, bool>();
     ARLiveSketchColorMapping currentColorMapping;
-    Camera arCamera;
     int arObjLayer;
+    ColorMappingCaptureView view;
 
 
 
-    public void Init()
+    public void Init(ColorMappingCaptureView view)
     {
-        arCamera = Camera.main;
+        this.view = view;
         arObjLayer = LayerMask.NameToLayer("ARObj");
         trackedStates.Clear();
-
         Vuforia.VuforiaBehaviour.Instance.SetMaximumSimultaneousTrackedImages(maxImageTargets);
-
         defaultObserverEventHandlers = targetListObj.GetComponentsInChildren<DefaultObserverEventHandler>();
         foreach (DefaultObserverEventHandler handler in defaultObserverEventHandlers)
         {
@@ -61,6 +59,7 @@ public class ColorMappingCaptureManager : SingletonMonoBehaviour<ColorMappingCap
             {
                 await UniTask.WaitForSeconds(0.5f);
                 arCamera.cullingMask = originalCullingMask;
+                view.CurState = ARCaptureViewStateType.Result;
             }
         }
     }

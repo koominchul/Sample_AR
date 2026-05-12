@@ -15,7 +15,6 @@ public class SampleARCaptureManager : SingletonMonoBehaviour<SampleARCaptureMana
 
     DefaultObserverEventHandler[] defaultObserverEventHandlers;
     Dictionary<string, bool> trackedStates = new Dictionary<string, bool>();
-    ARLiveSketchColorMapping currentColorMapping;
     SampleARCaptureView view;
     PlayableDirector currentPD;
     string currentTargetName = "";
@@ -83,11 +82,11 @@ public class SampleARCaptureManager : SingletonMonoBehaviour<SampleARCaptureMana
             PlayableDirector pd = handler.GetComponentInChildren<PlayableDirector>();
             if (pd != null)
             {
-                view.CurState = SampleARCaptureView.ViewState.Play;
+                view.CurState = ARCaptureViewStateType.Play;
                 currentHandleObj = handler.transform.GetChild(0).gameObject;
                 if (currentTargetName != imageTarget.TargetName)
                 {
-                    view.PrevState = SampleARCaptureView.ViewState.Play;
+                    view.PrevState = ARCaptureViewStateType.Play;
                     if (currentPD != null)
                         currentPD.stopped -= OnTimelineStopped;
 
@@ -99,9 +98,9 @@ public class SampleARCaptureManager : SingletonMonoBehaviour<SampleARCaptureMana
                 }
                 else
                 {
-                    if (view.PrevState == SampleARCaptureView.ViewState.Result)
+                    if (view.PrevState == ARCaptureViewStateType.Result)
                     {
-                        view.CurState = SampleARCaptureView.ViewState.Result;
+                        view.CurState = ARCaptureViewStateType.Result;
                     }
 
                     if (currentPD.state == PlayState.Paused)
@@ -118,7 +117,7 @@ public class SampleARCaptureManager : SingletonMonoBehaviour<SampleARCaptureMana
                     currentPD.Pause();
             }
 
-            view.CurState = SampleARCaptureView.ViewState.Capture;
+            view.CurState = ARCaptureViewStateType.Capture;
         }
     }
 
@@ -126,7 +125,7 @@ public class SampleARCaptureManager : SingletonMonoBehaviour<SampleARCaptureMana
     {
         director.stopped -= OnTimelineStopped;
         if (My_UIManager.Instance != null)
-            view.CurState = SampleARCaptureView.ViewState.Result;
+            view.CurState = ARCaptureViewStateType.Result;
     }
 
     void OnDragStarted(InputAction.CallbackContext context)

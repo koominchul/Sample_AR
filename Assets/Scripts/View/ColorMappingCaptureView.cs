@@ -1,12 +1,25 @@
 using Cysharp.Threading.Tasks;
 using Luck9kr.Uisystem;
+using UnityEngine;
+using UnityEngine.UI;
 
 
 public class ColorMappingCaptureView : UIView
 {
-    CustomButton captureBtn;
+    Button captureBtn;
     bool bInit = false;
+    ARCaptureViewStateType curState = ARCaptureViewStateType.Capture;
 
+    public ARCaptureViewStateType PrevState { get; set; } = ARCaptureViewStateType.Play;
+    public ARCaptureViewStateType CurState
+    {
+        get { return curState; }
+        set
+        {
+            curState = value;
+            SetState();
+        }
+    }
 
 
     public override void Show(object param = null)
@@ -16,16 +29,22 @@ public class ColorMappingCaptureView : UIView
 
     protected override void OnFirstShow()
     {
-        captureBtn = Find<CustomButton>("CaptureState/CaptureBtn");
+        captureBtn = Find<Button>("CaptureState/CaptureBtn");
         captureBtn.onClick.AddListener(OnClick_CaptureBtn);
-        bInit = false;
+        Find<Button>("CaptureState/ExitBtn").onClick.AddListener(OnClick_ExitBtn);
+        Find<Button>("ResultState/ExitBtn").onClick.AddListener(OnClick_ExitBtn);
+
+    }
+
+    protected override void OnShow()
+    {
+        SetState_Tracked(false);
     }
 
     protected override void OnEnableLayer()
     {
         Vuforia.VuforiaApplication.Instance.OnVuforiaStarted += OnVuforiaStarted;
-        Find("LoadingState").SetActive(true);
-        SetState_Capture(false);
+        CurState = ARCaptureViewStateType.Loading;
     }
 
     protected override void OnDisableLayer()
@@ -35,21 +54,21 @@ public class ColorMappingCaptureView : UIView
 
     void OnVuforiaStarted()
     {
-        ColorMappingCaptureManager.Instance.Init();
-        SetState_Tracked(false);
-        SetState_Capture(true);
-        Find("LoadingState").SetActive(false);
+        ColorMappingCaptureManager.Instance.Init(this);
+        CurState = ARCaptureViewStateType.Capture;
         bInit = true;
+    }
+
+    void SetState()
+    {
+        Find("LoadingState").SetActive(curState == ARCaptureViewStateType.Loading);
+        Find("CaptureState").SetActive(curState == ARCaptureViewStateType.Capture);
+        Find("ResultState").SetActive(curState == ARCaptureViewStateType.Result);
     }
 
     public void SetState_Tracked(bool isTracked)
     {
         captureBtn.interactable = isTracked;
-    }
-
-    public void SetState_Capture(bool isOn)
-    {
-        Find("CaptureState").SetActive(isOn);
     }
 
     void Update()
@@ -62,14 +81,16 @@ public class ColorMappingCaptureView : UIView
     #region Button Event
     void OnClick_ExitBtn()
     {
-        Vuforia.VuforiaBehaviour.Instance.enabled = false;
-        // WV_UIMamager.Instance.Goto_SquareScene();
+        PopupState popup = My_UIManager.Instance.Popup<CommonMessagePopup>().Open(CommonPopupType.D, "Intro 화면으로 이동하시겠습니까?");
+        popup.OnYes = p =>
+        {
+            Vuforia.VuforiaBehaviour.Instance.enabled = false;
+            My_UIManager.Instance.Goto_IntroScene();
+        };
     }
 
     void OnClick_CaptureBtn()
     {
-        Find("CaptureState").SetActive(false);
-        // Find("ExitBtn").SetActive(false);
         ColorMappingCaptureManager.Instance.SetColorMapping().Forget();
     }
     #endregion

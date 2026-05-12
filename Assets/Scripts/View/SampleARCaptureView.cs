@@ -1,17 +1,15 @@
-using Cysharp.Threading.Tasks;
 using Luck9kr.Uisystem;
-using UnityEngine;
 using UnityEngine.UI;
 
 
 public class SampleARCaptureView : UIView
 {
-    public enum ViewState { Loading, Capture, Play, Result }
 
-    ViewState curState = ViewState.Capture;
 
-    public ViewState PrevState { get; set; } = ViewState.Play;
-    public ViewState CurState
+    ARCaptureViewStateType curState = ARCaptureViewStateType.Capture;
+
+    public ARCaptureViewStateType PrevState { get; set; } = ARCaptureViewStateType.Play;
+    public ARCaptureViewStateType CurState
     {
         get { return curState; }
         set
@@ -38,8 +36,7 @@ public class SampleARCaptureView : UIView
     protected override void OnEnableLayer()
     {
         Vuforia.VuforiaApplication.Instance.OnVuforiaStarted += OnVuforiaStarted;
-        Find("LoadingState").SetActive(true);
-        SetState_Capture(false);
+        CurState = ARCaptureViewStateType.Loading;
     }
 
     protected override void OnDisableLayer()
@@ -50,37 +47,32 @@ public class SampleARCaptureView : UIView
     void OnVuforiaStarted()
     {
         SampleARCaptureManager.Instance.Init(this);
-        SetState_Capture(true);
-        Find("LoadingState").SetActive(false);
-    }
-
-    public void SetState_Capture(bool isOn)
-    {
-        Find("CaptureState").SetActive(isOn);
+        CurState = ARCaptureViewStateType.Capture;
     }
 
     void SetState()
     {
-        Find("LoadingState").SetActive(curState == ViewState.Loading);
-        Find("CaptureState").SetActive(curState == ViewState.Capture);
-        Find("PlayState").SetActive(curState == ViewState.Play);
-        Find("ResultState").SetActive(curState == ViewState.Result);
+        Find("LoadingState").SetActive(curState == ARCaptureViewStateType.Loading);
+        Find("CaptureState").SetActive(curState == ARCaptureViewStateType.Capture);
+        Find("PlayState").SetActive(curState == ARCaptureViewStateType.Play);
+        Find("ResultState").SetActive(curState == ARCaptureViewStateType.Result);
     }
 
 
     #region Button Event
     void OnClick_ExitBtn()
     {
-        // PopupState poupState = WV_UIMamager.Instance.Popup<CommonPopup>().Open(CommonPopupType.D, "creativepowerplan_goto_lobby", ePopupType.i_quit);
-        // poupState.OnYes = p =>
-        // {
-        //     UIManager.Instance.LoadLevel(Constants.Scene.CreativePowerPlant_Lobby, null);
-        // };
+        PopupState popup = My_UIManager.Instance.Popup<CommonMessagePopup>().Open(CommonPopupType.D, "Intro 화면으로 이동하시겠습니까?");
+        popup.OnYes = p =>
+        {
+            Vuforia.VuforiaBehaviour.Instance.enabled = false;
+            My_UIManager.Instance.Goto_IntroScene();
+        };
     }
 
     void OnClick_ReplayBtn()
     {
-        CurState = ViewState.Play;
+        CurState = ARCaptureViewStateType.Play;
         SampleARCaptureManager.Instance.ReplayProduction();
     }
     #endregion

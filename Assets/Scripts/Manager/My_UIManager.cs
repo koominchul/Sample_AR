@@ -1,4 +1,6 @@
+using System.Collections;
 using Luck9kr.Uisystem;
+using UnityEngine;
 
 public class My_UIManager : UIManager
 {
@@ -16,6 +18,7 @@ public class My_UIManager : UIManager
 
     protected override void OnAwakeUI()
     {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
         base.OnAwakeUI();
     }
@@ -34,5 +37,26 @@ public class My_UIManager : UIManager
     protected override void OnEndLoading()
     {
         Popup<LoadingPopup>().Close();
+    }
+
+    public T GetActivePopup<T>() where T : UIPopup
+    {
+        return (T)CurrentPopups.Find(p => p != null && p.gameObject.activeInHierarchy && p.name == typeof(T).Name);
+    }
+
+    public void SceneLoad(LoadingDataParam param)
+    {
+        StartCoroutine(SceneLoading(param));
+    }
+
+    public void Goto_IntroScene()
+    {
+        LoadLevel(Constants.Scene.Intro);
+    }
+
+    public IEnumerator SceneLoading(LoadingDataParam param)
+    {
+        yield return StartCoroutine(SceneLoadManager.Instance.FadeStart());
+        LoadLevelAsync(Constants.Scene.Loaing, "LoadingView", param);
     }
 }
