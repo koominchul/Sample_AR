@@ -1,13 +1,25 @@
 using Cysharp.Threading.Tasks;
 using Luck9kr.Uisystem;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class SampleARCaptureView : UIView
 {
-    CustomButton captureBtn;
-    bool bInit = false;
+    public enum ViewState { Loading, Capture, Play, Result }
 
+    ViewState curState = ViewState.Capture;
+
+    public ViewState PrevState { get; set; } = ViewState.Play;
+    public ViewState CurState
+    {
+        get { return curState; }
+        set
+        {
+            curState = value;
+            SetState();
+        }
+    }
 
 
     public override void Show(object param = null)
@@ -17,9 +29,10 @@ public class SampleARCaptureView : UIView
 
     protected override void OnFirstShow()
     {
-        captureBtn = Find<CustomButton>("CaptureState/CaptureBtn");
-        captureBtn.onClick.AddListener(OnClick_CaptureBtn);
-        bInit = false;
+        Find<Button>("CaptureState/ExitBtn").onClick.AddListener(OnClick_ExitBtn);
+        Find<Button>("PlayState/ExitBtn").onClick.AddListener(OnClick_ExitBtn);
+        Find<Button>("ResultState/Buttons/ExitBtn").onClick.AddListener(OnClick_ExitBtn);
+        Find<Button>("ResultState/Buttons/ReplayBtn").onClick.AddListener(OnClick_ReplayBtn);
     }
 
     protected override void OnEnableLayer()
@@ -36,16 +49,9 @@ public class SampleARCaptureView : UIView
 
     void OnVuforiaStarted()
     {
-        SampleARCaptureManager.Instance.Init();
-        SetState_Tracked(false);
+        SampleARCaptureManager.Instance.Init(this);
         SetState_Capture(true);
         Find("LoadingState").SetActive(false);
-        bInit = true;
-    }
-
-    public void SetState_Tracked(bool isTracked)
-    {
-        captureBtn.interactable = isTracked;
     }
 
     public void SetState_Capture(bool isOn)
@@ -53,25 +59,29 @@ public class SampleARCaptureView : UIView
         Find("CaptureState").SetActive(isOn);
     }
 
-    void Update()
+    void SetState()
     {
-        if (bInit)
-            SetState_Tracked(SampleARCaptureManager.Instance.IsTargetTracked());
+        Find("LoadingState").SetActive(curState == ViewState.Loading);
+        Find("CaptureState").SetActive(curState == ViewState.Capture);
+        Find("PlayState").SetActive(curState == ViewState.Play);
+        Find("ResultState").SetActive(curState == ViewState.Result);
     }
 
 
     #region Button Event
     void OnClick_ExitBtn()
     {
-        Vuforia.VuforiaBehaviour.Instance.enabled = false;
-        // WV_UIMamager.Instance.Goto_SquareScene();
+        // PopupState poupState = WV_UIMamager.Instance.Popup<CommonPopup>().Open(CommonPopupType.D, "creativepowerplan_goto_lobby", ePopupType.i_quit);
+        // poupState.OnYes = p =>
+        // {
+        //     UIManager.Instance.LoadLevel(Constants.Scene.CreativePowerPlant_Lobby, null);
+        // };
     }
 
-    void OnClick_CaptureBtn()
+    void OnClick_ReplayBtn()
     {
-        Find("CaptureState").SetActive(false);
-        // Find("ExitBtn").SetActive(false);
-        SampleARCaptureManager.Instance.SetColorMapping().Forget();
+        CurState = ViewState.Play;
+        SampleARCaptureManager.Instance.ReplayProduction();
     }
     #endregion
 }

@@ -37,8 +37,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: -6360019808618772790, guid: d63c7cc37c332aa4d9be8436d8de1d44,
-          type: 2}
+        m_Texture: {fileID: -6360019808618772790, guid: d63c7cc37c332aa4d9be8436d8de1d44, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OutlineTex:
@@ -91,8 +90,8 @@ Material:
     - _TextureHeight: 2048
     - _TextureWidth: 2048
     - _UnderlayDilate: 0
-    - _UnderlayOffsetX: 0
-    - _UnderlayOffsetY: -0.7
+    - _UnderlayOffsetX: 0.5
+    - _UnderlayOffsetY: -0.5
     - _UnderlaySoftness: 0
     - _VertexOffsetX: 0
     - _VertexOffsetY: 0
@@ -108,6 +107,6 @@ Material:
     - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
-    - _UnderlayColor: {r: 0, g: 0, b: 0, a: 0.48235294}
+    - _UnderlayColor: {r: 0, g: 0, b: 0, a: 0.8}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
