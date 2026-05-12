@@ -5,12 +5,14 @@ Unity 기반 AR 샘플 프로젝트입니다.
 ## Requirements
 
 - **Unity 6000.3.14f1** (Unity 6)
-- **Vuforia Engine 11.4.4** — 본 저장소의 `Packages/com.ptc.vuforia.engine-11.4.4.tgz`로 포함되어 있으며, Unity Package Manager가 자동 인식합니다. ([Vuforia Developer Portal](https://developer.vuforia.com/))
+- **Vuforia Engine 11.4.4** — 본 저장소의 `Packages/com.ptc.vuforia.engine-11.4.4.tgz`로 포함되어 있으며,
+  Unity Package Manager가 자동 인식합니다. ([Vuforia Developer Portal](https://developer.vuforia.com/))
 - **OpenCVForUnity** (유료 에셋) — **본 저장소에 포함되지 않습니다.**
 - **UISystemPackage** — `manifest.json`에서 git URL로 참조 (자동 설치)
 - **UniTask** — `manifest.json`에서 git URL로 참조 (자동 설치)
 - **LitMotion** — `manifest.json`에서 git URL로 참조 (자동 설치)
 - **LitMotion.Animation** — `manifest.json`에서 git URL로 참조 (자동 설치)
+- **UI Effect** — `manifest.json`에서 git URL로 참조 (자동 설치)
 
 ## Setup
 
@@ -37,8 +39,10 @@ OpenCVForUnity가 import되지 않은 상태에서는 `Assets/Scripts/AR/ColorMa
 
 ### 3. Unity Editor에서 프로젝트 열기
 
-`Assets/Scenes/Sample_AR.unity` 씬을 열어 사용합니다.
+`Assets/Scenes/_Intro.unity` 씬을 열어 사용합니다.
 
 ## License
 
-본 저장소의 코드는 작성자 소유입니다. 포함된 외부 패키지(Vuforia, OpenCVForUnity 등)는 각 제공자의 라이선스 약관을 따릅니다.
+본 저장소의 코드는 작성자 소유입니다.
+OpenCVForUnity 제공자의 라이선스 약관을 따릅니다.
+Vuforia Engine plans중 Basic Plan 기능만 사용합니다.(https://www.ptc.com/en/products/vuforia/vuforia-engine/pricing)
