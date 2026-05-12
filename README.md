@@ -41,8 +41,11 @@ OpenCVForUnity가 import되지 않은 상태에서는 `Assets/Scripts/AR/ColorMa
 
 `Assets/Scenes/_Intro.unity` 씬을 열어 사용합니다.
 
+
 ## License
 
 본 저장소의 코드는 작성자 소유입니다.
+
 OpenCVForUnity 제공자의 라이선스 약관을 따릅니다.
+
 Vuforia Engine plans중 Basic Plan 기능만 사용합니다.(https://www.ptc.com/en/products/vuforia/vuforia-engine/pricing)
