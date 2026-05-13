@@ -47,6 +47,30 @@ MonoBehaviour:
     m_Key: common_next
     m_Metadata:
       m_Items: []
+  - m_Id: 24226810466304
+    m_Key: common_replay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23962904858624
+    m_Key: common_exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24840550387712
+    m_Key: common_wait
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24075584835584
+    m_Key: ar_capture_guide_00
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24683381428224
+    m_Key: ar_capture_guide_01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25005956960256
+    m_Key: ar_capture_btn
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
