@@ -2,13 +2,20 @@
 
 Unity 기반 AR 샘플 프로젝트입니다.
 
+
+## sample AR 플레이 영상
+<a href="https://www.youtube.com/watch?v=lW_iOOZJ4J8" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.youtube.com/vi/lW_iOOZJ4J8/hqdefault.jpg" alt="sample AR 플레이 영상" width="600">
+  </a>
+
+
 ## Requirements
 
 - **Unity 6000.3.14f1** (Unity 6)
 - **Vuforia Engine 11.4.4** — 본 저장소의 `Packages/com.ptc.vuforia.engine-11.4.4.tgz`로 포함되어 있으며,
   Unity Package Manager가 자동 인식합니다. ([Vuforia Developer Portal](https://developer.vuforia.com/))
 - **OpenCVForUnity** (유료 에셋) — **본 저장소에 포함되지 않습니다.**
-- **UISystemPackage** — `manifest.json`에서 git URL로 참조 (자동 설치)
+- **UISystemPackage** — `manifest.json`에서 git URL로 참조 (URL: https://github.com/koominchul/UISystemPackage)
 - **UniTask** — `manifest.json`에서 git URL로 참조 (자동 설치)
 - **LitMotion** — `manifest.json`에서 git URL로 참조 (자동 설치)
 - **LitMotion.Animation** — `manifest.json`에서 git URL로 참조 (자동 설치)
