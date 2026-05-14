@@ -25,12 +25,12 @@ public class CommonMessagePopup : UIPopup
 
 
 
-    public PopupState Open(string message, string title = "알림")
+    public PopupState Open(string message, string title = "common_notice")
     {
         return Open(CommonPopupType.C, message, title);
     }
 
-    public PopupState Open(CommonPopupType popupType, string message, string title = "알림", float autoCloseTime = 2f)
+    public PopupState Open(CommonPopupType popupType, string message, string title = "common_notice", float autoCloseTime = 2f)
     {
         this.popupType = popupType;
         switch (popupType)
@@ -52,8 +52,8 @@ public class CommonMessagePopup : UIPopup
         _title = title == "" ? "Notice" : title;
         this.autoCloseTime = autoCloseTime;
 
-        // _title = LocalizationManager.Instance.GetLocalizeText(title);
-        // _message = LocalizationManager.Instance.GetLocalizeText(message);
+        _title = LocalizationManager.GetText(title);
+        _message = LocalizationManager.GetText(message);
 
         InitButtons();
         ShowLayer();

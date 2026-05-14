@@ -25,6 +25,7 @@ public class ColorMappingCaptureView : UIView
     public override void Show(object param = null)
     {
         ShowLayer();
+        SetInfo().Forget();
     }
 
     protected override void OnFirstShow()
@@ -36,15 +37,9 @@ public class ColorMappingCaptureView : UIView
 
     }
 
-    protected override void OnShow()
-    {
-        SetState_Tracked(false);
-    }
-
     protected override void OnEnableLayer()
     {
         Vuforia.VuforiaApplication.Instance.OnVuforiaStarted += OnVuforiaStarted;
-        CurState = ARCaptureViewStateType.Loading;
     }
 
     protected override void OnDisableLayer()
@@ -54,9 +49,16 @@ public class ColorMappingCaptureView : UIView
 
     void OnVuforiaStarted()
     {
+        bInit = true;
+    }
+
+    async UniTask SetInfo()
+    {
+        CurState = ARCaptureViewStateType.Loading;
+        await UniTask.WaitUntil(() => bInit);
+
         ColorMappingCaptureManager.Instance.Init(this);
         CurState = ARCaptureViewStateType.Capture;
-        bInit = true;
     }
 
     void SetState()
@@ -68,6 +70,9 @@ public class ColorMappingCaptureView : UIView
 
     public void SetState_Tracked(bool isTracked)
     {
+        if (captureBtn == null)
+            captureBtn = Find<Button>("CaptureState/CaptureBtn");
+
         captureBtn.interactable = isTracked;
     }
 
