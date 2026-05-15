@@ -3,31 +3,34 @@
 Unity 기반 AR 샘플 프로젝트입니다.
 
 
-## sample AR 플레이 영상
+## sample AR 플레이 영상 (썸네일 클릭시 영상 재생)
 <a href="https://www.youtube.com/watch?v=lW_iOOZJ4J8" target="_blank" rel="noopener noreferrer">
     <img src="https://img.youtube.com/vi/lW_iOOZJ4J8/hqdefault.jpg" alt="sample AR 플레이 영상" width="600">
   </a>
 
 
 ## Requirements
-
 - **Unity 6000.3.14f1** (Unity 6)
-- **Vuforia Engine 11.4.4** — 본 저장소의 `Packages/com.ptc.vuforia.engine-11.4.4.tgz`로 포함되어 있으며,
-  Unity Package Manager가 자동 인식합니다. ([Vuforia Developer Portal](https://developer.vuforia.com/))
 - **OpenCVForUnity** (유료 에셋) — **본 저장소에 포함되지 않습니다.**
-- **UISystemPackage** — `manifest.json`에서 git URL로 참조 (URL: https://github.com/koominchul/UISystemPackage)
-- **UniTask** — `manifest.json`에서 git URL로 참조 (자동 설치)
-- **LitMotion** — `manifest.json`에서 git URL로 참조 (자동 설치)
-- **LitMotion.Animation** — `manifest.json`에서 git URL로 참조 (자동 설치)
-- **UI Effect** — `manifest.json`에서 git URL로 참조 (자동 설치)
+
+
+
+## 프로젝트 적용된 패키지
+- **Vuforia Engine 11.4.4** — ([Vuforia Developer Portal](https://developer.vuforia.com/)) 본 저장소의 `Packages/com.ptc.vuforia.engine-11.4.4.tgz`로 포함
+- **UISystemPackage** — https://github.com/koominchul/UISystemPackage
+- **UniTask** — https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask
+- **LitMotion** — https://github.com/annulusgames/LitMotion.git?path=src/LitMotion/Assets/LitMotion
+- **LitMotion.Animation** — https://github.com/annulusgames/LitMotion.git?path=src/LitMotion/Assets/LitMotion.Animation
+- **UI Effect** — https://github.com/mob-sakai/UIEffect.git?path=Packages/src
+
 
 ## Setup
-
 ### 1. 저장소 클론
 
 ```bash
 git clone https://github.com/koominchul/Sample_AR.git
 ```
+
 
 ### 2. OpenCVForUnity 별도 import (필수)
 
@@ -44,13 +47,12 @@ git clone https://github.com/koominchul/Sample_AR.git
 
 OpenCVForUnity가 import되지 않은 상태에서는 `Assets/Scripts/AR/ColorMapping/AirarManager.cs` OpenCV 의존 코드의 컴파일 에러가 발생합니다.
 
-### 3. Unity Editor에서 프로젝트 열기
 
+### 3. Unity Editor에서 프로젝트 열기
 `Assets/Scenes/_Intro.unity` 씬을 열어 사용합니다.
 
 
 ## License
-
 본 저장소의 코드는 작성자 소유입니다.
 
 OpenCVForUnity 제공자의 라이선스 약관을 따릅니다.
